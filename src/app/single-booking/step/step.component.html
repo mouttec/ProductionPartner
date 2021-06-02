@@ -1,0 +1,50 @@
+<div class="row mt-5 mb-5 pt">
+  <div class="text-center col-9">
+      <h2>Mise à jour de status</h2>
+  </div>
+  <div class="text-right col-3">
+      <button style="font-size: 12px;" class="btn-danger" (click)="onBooking()">Retour au rendez-vous</button>
+  </div>
+</div>
+
+<div class="row mb-5 pb">
+  <div class="col-3 text-center m-auto">
+    <div class="m-auto">
+      <h3 class="m-0">Êtes vous sûr d'avoir fini les travaux ? </h3>
+    </div>
+  </div>
+  <div class="col-4 text-center m-auto">
+    <div class="m-auto">
+      <button (click)="onYes()">Oui</button>
+    </div>
+  </div>
+  <div class="col-4 text-center m-auto">
+    <div class="m-auto">
+      <button (click)="onNo()">Non</button>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-5 pb">
+  <div class="col-12">
+    <h2>Envoyer une demande de paiement</h2>
+  </div>
+  <div class="col-3 text-center m-auto">
+    <div class="m-auto">
+      <label for=""> Entrer le montant</label>
+    </div>
+  </div>
+  <div class="col-4 text-center m-auto">
+    <div class="m-auto">
+      <input type="text">
+    </div>
+  </div>
+  <div class="col-4 text-center m-auto">
+    <div class="m-auto">
+      <button (click)="onPayment()">Valider</button>
+    </div>
+  </div>
+</div>
+
+
+

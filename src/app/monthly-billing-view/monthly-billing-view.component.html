@@ -1,0 +1,9 @@
+<div class="row mt-5 mb-5 pt">
+  <div class="text-center col-12">
+    <h2>Factures mensuelles</h2>
+  </div>
+</div>
+
+<div class="container pb-5">
+  <app-monthly-billing *ngFor="let billing of billings; let i = index" [indexOfBilling]="i" [idInvoice]="billing.idInvoice" [invoiceNumber]="billing.invoiceNumber" [amountInvoice]="billing.amountInvoice" [invoiceDate]="billing.invoinceDate" [invoiceLines]="billing.invoiceLines" [idContract]="billing.idContract" [dateCustomer]="billing.dateCustomer" [idPartner]="billing.idPartner"></app-monthly-billing>
+</div>
