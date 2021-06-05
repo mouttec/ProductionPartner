@@ -37,7 +37,7 @@ export class UpdatePasswordComponent implements OnInit {
       {
         password: ['', Validators.required]
       }
-    )
+    );
   }
 
   onSubmitFormUpdatePassword() {

@@ -73,7 +73,7 @@ constructor(private http: HttpClient, private formBuilder: FormBuilder, private 
         nameBilling: [''],
         addressBilling: [''],
       }
-    )
+    );
     this.updateProfil.controls['mailPartner'].setValue(this.mailPartner);
     this.updateProfil.controls['phonePartner'].setValue(this.phonePartner);
     this.updateProfil.controls['nameBilling'].setValue(this.nameBilling);

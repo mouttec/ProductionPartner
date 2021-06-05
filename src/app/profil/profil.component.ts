@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PartnerService } from 'src/app/services/partner.service';
-import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import * as $AB from 'jquery';
-import * as bootstrap from 'bootstrap';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profil',

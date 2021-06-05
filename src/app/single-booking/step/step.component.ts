@@ -126,6 +126,9 @@ export class StepComponent implements OnInit {
     else if  (this.carStatus === 'etape 26') {
       return this.statusBooking = 'Véhicule restitué';
     }
+    else if  (this.carStatus === 'etape 27') {
+      return this.statusBooking = 'Véhicule restitué';
+    }
   }
 
   onBooking() {

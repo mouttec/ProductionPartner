@@ -11,12 +11,13 @@ export class AuthService {
   redirectUrl: string;
   baseUrl = 'http://localhost:8888/MoutteCAPI/backend/api/partner';
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
+
   constructor( private httpClient: HttpClient) { }
   public userlogin(usernamePartner: any, password: any): any {
     return this.httpClient.post<any>(this.baseUrl + '/loginPartner.php', { usernamePartner, password})
     .pipe(map(Partners  => {
-      // this.setToken(Partners.namePartner);
-      // this.getLoggedInName.emit(true);
+      this.setToken(Partners.namePartner);
+      this.getLoggedInName.emit(true);
       return Partners;
     }));
   }
