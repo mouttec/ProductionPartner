@@ -19,6 +19,7 @@ export class CustomerViewComponent implements OnInit, OnDestroy {
     this.customerSubscription = this.customerService.customerSubject.subscribe(
       (customers: Customer[]) => {
         this.customers = customers;
+        console.log(this.customers);
       }
     );
     this.customerService.readlListCustomer();
