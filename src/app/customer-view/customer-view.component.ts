@@ -12,6 +12,7 @@ export class CustomerViewComponent implements OnInit, OnDestroy {
 
   customers: Customer[];
   customerSubscription: Subscription;
+  p: number = 1;
 
   constructor(private customerService: CustomerService) { }
 

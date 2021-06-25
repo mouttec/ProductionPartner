@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     } else {
       this.loginbtn = true;
       this.logoutbtn = false;
-    }
+    }    
   }
 
   ngOnInit(): void {

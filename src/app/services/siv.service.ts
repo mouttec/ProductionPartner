@@ -17,7 +17,7 @@ export class SivService {
   versionCar: any;
   dateOfCirculationCar: any;
   motorizationCar: any;
-  api = 'http://localhost:8888/MoutteCAPI/backend/api/car';
+  api = '../backend/api/car';
 
   constructor(private httpClient: HttpClient) { }
 

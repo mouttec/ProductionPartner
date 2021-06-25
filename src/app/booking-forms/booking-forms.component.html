@@ -1,252 +1,265 @@
 <div class="row mt-5 mb-5">
-  <div class="col-12 text-center">
-      <h2>Prendre un rendez-vous</h2>
-  </div>
+    <div class="col-12 text-center">
+        <h2>Prendre un rendez-vous</h2>
+    </div>
 </div>
 
 <div class="row">
-  <form class="col-10 offset-1" [formGroup]="bookingForm" (ngSubmit)="onSubmitFormBooking()">
-    <div class="row">
-      <div class="col-6">
-        <h3 class="text-center mb-4">Choix de la formule</h3>
-      </div>
-    </div>
-    <div class="row d-flex">
-      <div class="mb-3 col-6">
-        <div class="row input-field d-flex flex-row mb-2">
-          <div class="input-field d-flex mt-radio flex-colunm col-7">
-                  <p class="d-flex flex-row">
-                    <input name="formulaBooking" type="radio" value="simple" class="validate m-auto" id="simple" formControlName="formulaBooking" (change)="changeFormulaBooking($event)">
-                    <label for="formulaBooking">Trajet simple</label>
-                  </p>
-          </div>
-          <div class="input-field d-flex mt-radio flex-colunm col-5">
-                  <p class="d-flex flex-row">
-                    <input name="formulaBooking" type="radio" value="round" class="validate m-auto" id="round" formControlName="formulaBooking" (change)="changeFormulaBooking($event)">
-                    <label for="formulaBooking">Aller/Retour</label>
-                  </p>
-          </div>
+    <form class="col-10 offset-1" [formGroup]="bookingForm" (ngSubmit)="onSubmitFormBooking()">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="text-center mb-4">Choix de la formule</h3>
+            </div>
         </div>
-        <div class="row input-field d-flex flex-row mb-2" *ngIf="this.bookingForm.value.formulaBooking === 'simple' || this.bookingForm.value.formulaBooking === 'forth' || this.bookingForm.value.formulaBooking === 'back' ">
-          <div class="input-field d-flex mt-radio flex-colunm">
-            <label class="col-4 mr-0" for="formulaBooking">Type de trajet</label>
-            <select class="validate col-8" id="formulaBooking" formControlName="formulaBooking" required>
+        <div class="row d-flex">
+            <div class="mb-3 col-6">
+                <div class="row input-field d-flex flex-row mb-2">
+                    <div class="input-field d-flex mt-radio flex-colunm col-7">
+                        <p class="d-flex flex-row">
+                            <input name="formulaBooking" type="radio" value="simple" class="validate m-auto" id="simple" formControlName="formulaBooking" (change)="changeFormulaBooking($event)">
+                            <label for="formulaBooking">Trajet simple</label>
+                        </p>
+                    </div>
+                    <div class="input-field d-flex mt-radio flex-colunm col-5">
+                        <p class="d-flex flex-row">
+                            <input name="formulaBooking" type="radio" value="round" class="validate m-auto" id="round" formControlName="formulaBooking" (change)="changeFormulaBooking($event)">
+                            <label for="formulaBooking">Aller/Retour</label>
+                        </p>
+                    </div>
+                </div>
+                <div class="row input-field d-flex flex-row mb-2" *ngIf="this.bookingForm.value.formulaBooking === 'simple' || this.bookingForm.value.formulaBooking === 'forth' || this.bookingForm.value.formulaBooking === 'back' ">
+                    <div class="input-field d-flex mt-radio flex-colunm">
+                        <label class="col-4 mr-0" for="formulaBooking">Type de trajet</label>
+                        <select class="validate col-8" id="formulaBooking" formControlName="formulaBooking" required>
               <option value="Selectionnez un type de trajet" disabled selected>Sélectionnez un type de trajet</option>
               <option value="forth" (change)="changeFormulaBooking($event)">Prise en charge</option>
               <option value="back" (change)="changeFormulaBooking($event)">Restitution</option>
             </select>
-          </div>
-        </div>
-      </div>
-      <div class="mb-3 col-6" [ngClass]="{'d-none': this.bookingForm.value.formulaBooking != 'forth' && this.bookingForm.value.formulaBooking != 'back'}">
-        <div class="input-field d-flex flex-row mb-70">
-          <div class="input-field col-12">
-            <div class="label" [ngClass]="{'d-none': this.bookingForm.value.formulaBooking != 'forth'}">
-              <label for="address" >Adresse de prise en charge</label>
+                    </div>
+                </div>
             </div>
-            <div class="label" [ngClass]="{'d-none': this.bookingForm.value.formulaBooking != 'back'}">
-              <label for="address" >Adresse de restitution</label>
+            <div class="mb-3 col-6" [ngClass]="{'d-none': this.bookingForm.value.formulaBooking != 'forth' && this.bookingForm.value.formulaBooking != 'back'}">
+                <div class="input-field d-flex flex-row mb-70">
+                    <div class="input-field col-12">
+                        <div class="label" [ngClass]="{'d-none': this.bookingForm.value.formulaBooking != 'forth'}">
+                            <label for="address">Adresse de prise en charge</label>
+                        </div>
+                        <div class="label" [ngClass]="{'d-none': this.bookingForm.value.formulaBooking != 'back'}">
+                            <label for="address">Adresse de restitution</label>
+                        </div>
+                        <input type="text" class="validate" id="address" formControlName="address">
+                        <!-- <div class="messageError">
+                <sup>*</sup>Champ obligatoire
+            </div> -->
+                    </div>
+                </div>
             </div>
-            <input type="text" class="validate" id="address" formControlName="address">
-            <!-- <div class="messageError">
+            <div class="mb-3 col-6" [ngClass]="{'d-none': this.bookingForm.value.formulaBooking != 'round'}">
+                <div class="input-field d-flex flex-row mb-70">
+                    <div class="input-field col-12">
+                        <label for="addressForth">Adresse de prise en charge</label>
+                        <input type="text" class="validate" id="addressForth1" formControlName="addressForth">
+                        <!-- <div class="messageError">
                 <sup>*</sup>Champ obligatoire
             </div> -->
-          </div>
-        </div>
-      </div>
-      <div class="mb-3 col-6" [ngClass]="{'d-none': this.bookingForm.value.formulaBooking != 'round'}">
-        <div class="input-field d-flex flex-row mb-70">
-          <div class="input-field col-12">
-            <label for="addressForth">Adresse de prise en charge</label>
-            <input type="text" class="validate" id="addressForth1" formControlName="addressForth">
-            <!-- <div class="messageError">
+                    </div>
+                </div>
+                <div class="input-field d-flex flex-row mb">
+                    <div class="input-field col-12">
+                        <label for="addressBack">Adresse de restitution</label>
+                        <input type="text" class="validate" id="addressBack1" formControlName="addressBack">
+                        <!-- <div class="messageError">
                 <sup>*</sup>Champ obligatoire
             </div> -->
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-12">
-            <label for="addressBack">Adresse de restitution</label>
-            <input type="text" class="validate" id="addressBack1" formControlName="addressBack">
-            <!-- <div class="messageError">
-                <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row d-flex mb-5">
-      <div class="input-field text-center m-auto">
-        <button class="m-auto size" id="btn" (click)="getDist()">Tarif</button>
-      </div>
-      <div class="input-field text-center" *ngIf="this.tarif != undefined && this.tarif != 'nous contacter'">
-        <h3>Le tarif de la prestation est de {{ tarif }}</h3>
-      </div>
-      <div class="input-field text-center" *ngIf="this.tarif === 'nous contacter'">
-        <h3><strong>Distance trop importante trajet indisponible</strong></h3>
-      </div>
-    </div>
-
-    <div class="row d-flex">
-      <div class="col-6 colInfoLeft" *ngIf="this.tarif != undefined && this.tarif != 'nous contacter' ">
-        <h3 class="text-center mb-4">Information client</h3>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-6">
-            <label for="firstNameCustomer">Nom du client</label>
-            <input required type="text" class="validate" id="firstNameCustomer" formControlName="firstNameCustomer">
-            <!-- <div class="messageError">
-                <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-          <div class="input-field col-6">
-            <label for="lastNameCustomer">Prénom du client</label>
-            <input required type="text" class="validate" id="lastNameCustomer" formControlName="lastNameCustomer">
-            <!-- <div class="messageError">
-                <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-        </div>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-6">
-            <label for="phoneCustomer">Téléphone du client</label>
-            <input required type="text" class="validate" id="phoneCustomer" formControlName="phoneCustomer">
-            <!-- <div class="messageError">
-              <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-          <div class="input-field col-6">
-            <label for="mailCustomer">E-mail</label>
-            <input type="text" class="validate" id="mailCustomer" formControlName="mailCustomer">
-            <!-- <div class="messageError">
-                <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-        </div>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-12">
-            <label for="dateOfBirthdayCustomer">Date de naissance du client</label>
-            <input type="date" class="validate" id="dateOfBirthdayCustomer" formControlName="dateOfBirthdayCustomer">
-            <!-- <div class="messageError">
-                <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-        </div>
-        <h3 class="text-center mb-4 mt-4">Information véhicule</h3>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-12">
-            <label for="licensePlateCar">Plaque d'immatriculation</label>
-            <input required type="text" class="validate" id="licensePlateCar" formControlName="licensePlateCar">
-            <!-- <div class="messageError">
-              <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-        </div>
-        <div class="mt-5 mb-5 text-center">
-          <button class="m-auto size" id="btn" (click)="getCar()">Valider la plaque</button>
-        </div>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-6"*ngIf="this.brandCar != null" >
-            <p class="m-auto p-2 info"><span>Marque : </span><br>{{ brandCar }}</p>
-          </div>
-          <div class="input-field col-6" *ngIf="this.modelCar != null">
-            <p class="m-auto p-2 info"><span>Model : </span><br>{{ modelCar }}</p>
-          </div>
-        </div>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-6" *ngIf="this.dateOfCirculationCar != null">
-            <p class="m-auto p-2 info"><span>Date de mise en circulation : </span><br>{{ dateOfCirculationCar }}</p>
-          </div>
-          <div class="input-field col-6" *ngIf="this.motorizationCar != null">
-            <p class="m-auto p-2 info"><span>Motorisation : </span><br>{{ motorizationCar }}</p>
-          </div>
-        </div>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-6" *ngIf="this.colorCar != null">
-            <p class="m-auto p-2 info"><span>Couleur : </span><br>{{ colorCar }}</p>
-          </div>
-          <div class="input-field col-6" *ngIf="this.versionCar != null">
-            <p class="m-auto p-2 info"><span>Version : </span><br>{{ versionCar }}</p>
-          </div>
+        <div class="row d-flex mb-5">
+            <div class="input-field text-center m-auto">
+                <a class="m-auto size" id="btn" (click)="getDist()">Tarif</a>
+            </div>
+            <div class="input-field text-center" *ngIf="this.tarif != undefined && this.tarif != 'nous contacter'">
+                <h3>Le tarif de la prestation est de {{ tarif }}</h3>
+            </div>
+            <div class="input-field text-center" *ngIf="this.tarif === 'nous contacter'">
+                <h3><strong>Distance trop importante trajet indisponible</strong></h3>
+            </div>
         </div>
 
-        <div class="input-field d-flex flex-row mb">
-          <button>Modifier les informations</button>
-        </div>
+        <div class="row d-flex">
+            <div class="col-6 colInfoLeft" *ngIf="this.tarif != undefined && this.tarif != 'nous contacter' ">
+                <h3 class="text-center mb-4">Informations client</h3>
+                <div class="input-field d-flex flex-row mb">
+                    <div class="input-field col-6">
+                        <label for="firstNameCustomer">Nom du client</label>
+                        <input required type="text" class="validate" id="firstNameCustomer" formControlName="firstNameCustomer">
+                        <!-- <div class="messageError">
+                <sup>*</sup>Champ obligatoire
+            </div> -->
+                    </div>
+                    <div class="input-field col-6">
+                        <label for="lastNameCustomer">Prénom du client</label>
+                        <input required type="text" class="validate" id="lastNameCustomer" formControlName="lastNameCustomer">
+                        <!-- <div class="messageError">
+                <sup>*</sup>Champ obligatoire
+            </div> -->
+                    </div>
+                </div>
+                <div class="input-field d-flex flex-row mb">
+                    <div class="input-field col-6">
+                        <label for="phoneCustomer">Téléphone du client</label>
+                        <input required type="text" class="validate" id="phoneCustomer" formControlName="phoneCustomer">
+                        <!-- <div class="messageError">
+              <sup>*</sup>Champ obligatoire
+            </div> -->
+                    </div>
+                    <div class="input-field col-6">
+                        <label for="mailCustomer">E-mail</label>
+                        <input type="text" class="validate" id="mailCustomer" formControlName="mailCustomer">
+                        <!-- <div class="messageError">
+                <sup>*</sup>Champ obligatoire
+            </div> -->
+                    </div>
+                </div>
+                <div class="input-field d-flex flex-row mb">
+                    <div class="input-field col-12">
+                        <label for="dateOfBirthdayCustomer">Date de naissance du client</label>
+                        <input type="date" class="validate" id="dateOfBirthdayCustomer" formControlName="dateOfBirthdayCustomer">
+                        <!-- <div class="messageError">
+                <sup>*</sup>Champ obligatoire
+            </div> -->
+                    </div>
+                </div>
+                <h3 class="text-center mb-4 mt-4">Informations véhicule</h3>
+                <div class="input-field d-flex flex-row mb">
+                    <div class="input-field col-12">
+                        <label for="licensePlateCar">Plaque d'immatriculation</label>
+                        <input required type="text" class="validate" id="licensePlateCar" formControlName="licensePlateCar">
+                        <!-- <div class="messageError">
+              <sup>*</sup>Champ obligatoire
+            </div> -->
+                    </div>
+                </div>
+                <div class="mt-5 mb-5 text-center">
+                    <a class="m-auto size" id="btn" (click)="getCar()">Valider la plaque</a>
+                </div>
+                <div class="input-field d-flex flex-row mb">
+                    <div class="input-field col-6" *ngIf="this.brandCar != null">
+                        <label for="brandCar">Marque</label>
+                        <input required type="text" class="validate" id="brandCar" formControlName="brandCar">
+                    </div>
+                    <div class="input-field col-6" *ngIf="this.modelCar != null">
+                        <label for="modelCar">Modèle</label>
+                        <input required type="text" class="validate" id="modelCar" formControlName="modelCar">
+                    </div>
+                </div>
+                <div class="input-field d-flex flex-row mb">
+                    <div class="input-field col-6" *ngIf="this.dateOfCirculationCar != null">
+                        <label for="dateOfCirculationCar">Date de mise en circulation</label>
+                        <input required type="text" class="validate" id="dateOfCirculationCar" formControlName="dateOfCirculationCar">
+                    </div>
+                    <div class="input-field col-6" *ngIf="this.motorizationCar != null">
+                        <label for="motorizationCar">Motorisation</label>
+                        <input required type="text" class="validate" id="motorizationCar" formControlName="motorizationCar">
+                    </div>
+                </div>
+                <div class="input-field d-flex flex-row mb">
+                    <div class="input-field col-6" *ngIf="this.colorCar != null">
+                        <label for="colorCar">Couleur</label>
+                        <input required type="text" class="validate" id="colorCar" formControlName="colorCar">
+                    </div>
+                    <div class="input-field col-6" *ngIf="this.versionCar != null">
+                        <label for="versionCar">Version</label>
+                        <input required type="text" class="validate" id="versionCar" formControlName="versionCar">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 text-center">
+                <div class="row" *ngIf="this.formulaBooking === 'forth' ||  this.formulaBooking === 'round' ">
+                    <h3 class="text-center m-auto mb-4">Créneau de prise en charge</h3>
+                </div>
+                <div class="row" *ngIf="this.formulaBooking === 'forth' ||  this.formulaBooking === 'round' ">
+                    <pagination-controls id='pagination1' class="hide-page-numbers m-auto" (pageChange)="p = $event" previousLabel="prec" nextLabel="suiv"></pagination-controls>
+                </div>
+                <div class="row" *ngIf="this.formulaBooking === 'forth' ||  this.formulaBooking === 'round' ">
+                    <div class="col-4 m-auto text-center" *ngFor="let hoursBooking of hoursBookings | paginate: { id: 'pagination1', itemsPerPage: 3, currentPage: p }">
+                        <p class="hoursBooking">{{ hoursBooking.dateBookingCalendar }}</p>
+                    </div>
+                </div>
+                <div class="row" *ngIf="this.formulaBooking === 'forth' ||  this.formulaBooking === 'round' ">
+                    <div class="col-4 m-auto text-center" *ngFor="let hoursBooking of hoursBookings | paginate: { id: 'pagination1', itemsPerPage: 3, currentPage: p }">
+                        <div class="radio-group">
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h1bookingCalendar" id="h1Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h1bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h1Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h1bookingCalendar === 'Réservé'}">07:30</label>
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h2bookingCalendar" id="h2Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h2bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h2Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h2bookingCalendar === 'Réservé'}">08:30</label>
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h3bookingCalendar" id="h3Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h3bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h3Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h3bookingCalendar === 'Réservé'}">09:30</label>
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h4bookingCalendar" id="h4Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h4bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h4Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h4bookingCalendar === 'Réservé'}">10:30</label>
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h5bookingCalendar" id="h5Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h5bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h5Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h5bookingCalendar === 'Réservé'}">11:30</label>
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h6bookingCalendar" id="h6Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h6bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h6Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h6bookingCalendar === 'Réservé'}">13:30</label>
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h7bookingCalendar" id="h7Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h7bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h7Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h7bookingCalendar === 'Réservé'}">14:30</label>
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h8bookingCalendar" id="h8Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h8bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h8Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h8bookingCalendar === 'Réservé'}">15:30</label>
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h9bookingCalendar" id="h9Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h9bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h9Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h9bookingCalendar === 'Réservé'}">16:30</label>
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h10bookingCalendar" id="h10Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h10bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h10Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h10bookingCalendar === 'Réservé'}">17:30</label>
+                            <input name="hoursForth" type="radio" [value]="hoursBooking.h11bookingCalendar" id="h11Forth-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursForth" [ngClass]="{'d-none': hoursBooking.h11bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h11Forth-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h11bookingCalendar === 'Réservé'}">18:30</label>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-6">
-            <label for="brandCar">Marque du véhicule</label>
-            <input required type="text" class="validate" id="brandCar" formControlName="brandCar">
-            <!-- <div class="messageError">
-              <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-          <div class="input-field col-6">
-            <label for="modelCar">Modèle du véhicule</label>
-            <input required type="text" class="validate" id="modelCar" formControlName="modelCar">
-            <!-- <div class="messageError">
-                <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-        </div>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-6">
-            <label for="motorizationCar">Motorisation du <br>véhicule</label>
-            <input required type="text" class="validate" id="motorizationCar" formControlName="motorizationCar">
-            <!-- <div class="messageError">
-              <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-          <div class="input-field col-6">
-            <label for="dateOfCirculationCar">Date de première mise en circulation</label>
-            <input required type="date" class="validate" id="dateOfCirculationCar" formControlName="dateOfCirculationCar">
-            <!-- <div class="messageError">
-                <sup>*</sup>Champ obligatoire
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <!-- <h3 class="text-center mb-4">Créneau de prise en charge</h3>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-6">
-            <label for="dateForth">date</label>
-            <input required type="text" class="validate" id="dateForth" formControlName="dateForth"> -->
-            <!-- <div class="messageError">
-              <sup>*</sup>Champ obligatoire
-            </div> -->
-          <!-- </div>
-          <div class="input-field col-6">
-            <label for="hoursForth">heure</label>
-            <input required type="text" class="validate" id="hoursForth" formControlName="hoursForth"> -->
-            <!-- <div class="messageError">
-                <sup>*</sup>Champ obligatoire
-            </div> -->
-          <!-- </div>
-        </div>
-        <h3 class="text-center mb-4">Créneau de restitution</h3>
-        <div class="input-field d-flex flex-row mb">
-          <div class="input-field col-6">
-            <label for="dateBack">date</label>
-            <input required type="text" class="validate" id="dateBack" formControlName="dateBack"> -->
-            <!-- <div class="messageError">
-              <sup>*</sup>Champ obligatoire
-            </div> -->
-          <!-- </div>
-          <div class="input-field col-6">
-            <label for="hoursBack">heure</label>
-            <input required type="text" class="validate" id="hoursBack" formControlName="hoursBack"> -->
-            <!-- <div class="messageError">
-                <sup>*</sup>Champ obligatoire
-            </div> -->
-          <!-- </div>
-        </div>
-      </div> -->
+                <div class="row sepHoursBooking" *ngIf="this.formulaBooking === 'back' ||  this.formulaBooking === 'round' ">
+                    <h3 class="text-center m-auto title">Créneau de restitution</h3>
+                </div>
+                <div class="row" *ngIf="this.formulaBooking === 'back' ||  this.formulaBooking === 'round' ">
+                    <pagination-controls id='pagination2' class="hide-page-numbers m-auto" (pageChange)="p2 = $event" previousLabel="prec" nextLabel="suiv"></pagination-controls>
+                </div>
+                <div class="row" *ngIf="this.formulaBooking === 'back' ||  this.formulaBooking === 'round' ">
+                    <div class="col-4 m-auto text-center" *ngFor="let hoursBooking of hoursBookings | paginate: { id: 'pagination2', itemsPerPage: 3, currentPage: p2 }">
+                        <p class="hoursBooking">{{ hoursBooking.dateBookingCalendar }}</p>
+                    </div>
+                </div>
+                <div class="row" *ngIf="this.formulaBooking === 'back' ||  this.formulaBooking === 'round' ">
+                    <div class="col-4 m-auto text-center" *ngFor="let hoursBooking of hoursBookings | paginate: { id: 'pagination2', itemsPerPage: 3, currentPage: p2 }">
+                        <div class="radio-group">
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h1bookingCalendar" id="h1Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h1bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h1Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h1bookingCalendar === 'Réservé'}">07:30</label>
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h2bookingCalendar" id="h2Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h2bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h2Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h2bookingCalendar === 'Réservé'}">08:30</label>
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h3bookingCalendar" id="h3Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h3bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h3Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h3bookingCalendar === 'Réservé'}">09:30</label>
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h4bookingCalendar" id="h4Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h4bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h4Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h4bookingCalendar === 'Réservé'}">10:30</label>
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h5bookingCalendar" id="h5Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h5bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h5Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h5bookingCalendar === 'Réservé'}">11:30</label>
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h6bookingCalendar" id="h6Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h6bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h6Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h6bookingCalendar === 'Réservé'}">13:30</label>
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h7bookingCalendar" id="h7Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h7bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h7Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h7bookingCalendar === 'Réservé'}">14:30</label>
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h8bookingCalendar" id="h8Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h8bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h8Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h8bookingCalendar === 'Réservé'}">15:30</label>
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h9bookingCalendar" id="h9Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h9bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h9Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h9bookingCalendar === 'Réservé'}">16:30</label>
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h10bookingCalendar" id="h10Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h10bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h10Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h10bookingCalendar === 'Réservé'}">17:30</label>
+                            <input name="hoursBack" type="radio" [value]="hoursBooking.h11bookingCalendar" id="h11Back-{{hoursBooking.idBookingCalendar}}" class="validate m-auto hoursBookingRadio" formControlName="hoursBack" [ngClass]="{'d-none': hoursBooking.h11bookingCalendar === 'Réservé'}">
+                            <label class="hoursBookingLabel" for="h11Back-{{hoursBooking.idBookingCalendar}}" [ngClass]="{'d-none': hoursBooking.h11bookingCalendar === 'Réservé'}">18:30</label>
+                        </div>
+                    </div>
+                </div>
 
-</div>
-      <div class="col-12 mt-5 mb-5 text-center">
-        <button class="m-auto" id="btn" type="submit" [disabled]="bookingForm.invalid">Ajouter un rendez-vous</button>
-      </div>
-    </div>
-  </form>
+            </div>
+            <div class="col-12 mt-5 mb-5 text-center">
+                <button class="m-auto" id="btn" type="submit">Ajouter un rendez-vous</button>
+            </div>
+        </div>
+    </form>
 </div>

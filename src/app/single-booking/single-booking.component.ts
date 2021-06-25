@@ -25,8 +25,8 @@ export class SingleBookingComponent implements OnInit {
   motorizationCar: string;
   urlGrayCard: string;
   dateOfCirculationCar: string;
-  carStatus: any;
-  statusBooking: string;
+  carProcess: any;
+  carStatus: string;
 
   constructor(private bookingService: BookingService, private route: ActivatedRoute, private datePipe: DatePipe, private router: Router) { }
 
@@ -45,15 +45,15 @@ export class SingleBookingComponent implements OnInit {
         this.phoneCustomer = this.currentBooking[1].phoneCustomer;
         this.dateForth = this.currentBooking[0].dateForth;
         this.idBooking = this.currentBooking[0].idBooking;
+        this.carProcess = this.currentBooking[0].carProcess;
         this.licensePlateCar = this.currentBooking[2].licensePlateCar;
         this.brandCar = this.currentBooking[2].brandCar;
         this.modelCar = this.currentBooking[2].modelCar;
         this.motorizationCar = this.currentBooking[2].motorizationCar;
         this.urlGrayCard = this.currentBooking[2].urlGrayCard;
         this.dateOfCirculationCar = this.currentBooking[2].dateOfCirculationCar;
-        localStorage.setItem('carStatus', JSON.stringify(this.currentBooking[3].carStatus));
+        localStorage.setItem('carProcess', JSON.stringify(this.currentBooking[0].carProcess));
         localStorage.setItem('idBooking', JSON.stringify(this.currentBooking[0].idBooking));
-        this.carStatus = JSON.parse(localStorage.getItem('carStatus'));
         console.log(booking);
         this.getChangeStatus();
       }
@@ -61,86 +61,86 @@ export class SingleBookingComponent implements OnInit {
   }
 
   getChangeStatus() {
-    if (this.carStatus === 'etape 1') {
-      return this.statusBooking = 'En attente de prise en charge';
+    if (this.carProcess === 'etape1') {
+      return this.carStatus = 'En attente de prise en charge';
     }
-    else if  (this.carStatus === 'etape 2') {
-      return this.statusBooking = 'Prise en charge par MoutteC';
+    else if  (this.carProcess === 'etape2') {
+      return this.carStatus = 'Prise en charge par MoutteC';
     }
-    else if  (this.carStatus === 'etape 3') {
-      return this.statusBooking = 'Prise en charge par MoutteC';
+    else if  (this.carProcess === 'etape3') {
+      return this.carStatus = 'Prise en charge par MoutteC';
     }
-    else if  (this.carStatus === 'etape 4') {
-      return this.statusBooking = 'Prise en charge par MoutteC';
+    else if  (this.carProcess === 'etape4') {
+      return this.carStatus = 'Prise en charge par MoutteC';
     }
-    else if  (this.carStatus === 'etape 5') {
-      return this.statusBooking = 'Prise en charge par MoutteC';
+    else if  (this.carProcess === 'etape5') {
+      return this.carStatus = 'Prise en charge par MoutteC';
     }
-    else if  (this.carStatus === 'etape 6') {
-      return this.statusBooking = 'Prise en charge par MoutteC';
+    else if  (this.carProcess === 'etape6') {
+      return this.carStatus = 'Prise en charge par MoutteC';
     }
-    else if  (this.carStatus === 'etape 7') {
-      return this.statusBooking = 'Prise en charge par MoutteC';
+    else if  (this.carProcess === 'etape7') {
+      return this.carStatus = 'Prise en charge par MoutteC';
     }
-    else if  (this.carStatus === 'etape 8') {
-      return this.statusBooking = 'Prise en charge par MoutteC';
+    else if  (this.carProcess === 'etape8') {
+      return this.carStatus = 'Prise en charge par MoutteC';
     }
-    else if  (this.carStatus === 'etape 9') {
-      return this.statusBooking = 'Prise en charge par MoutteC';
+    else if  (this.carProcess === 'etape9') {
+      return this.carStatus = 'Prise en charge par MoutteC';
     }
-    else if  (this.carStatus === 'etape 10') {
-      return this.statusBooking = 'Prise en charge par MoutteC';
+    else if  (this.carProcess === 'etape10') {
+      return this.carStatus = 'Prise en charge par MoutteC';
     }
-    else if  (this.carStatus === 'etape 11') {
-      return this.statusBooking = 'Dans nos locaux';
+    else if  (this.carProcess === 'etape11') {
+      return this.carStatus = 'Dans nos locaux';
     }
-    else if  (this.carStatus === 'etape 12') {
-      return this.statusBooking = 'Demande de paiement';
+    else if  (this.carProcess === 'etape12') {
+      return this.carStatus = 'Demande de paiement';
     }
-    else if  (this.carStatus === 'etape 13') {
-      return this.statusBooking = 'Paiement en attente';
+    else if  (this.carProcess === 'etape13') {
+      return this.carStatus = 'Paiement en attente';
     }
-    else if  (this.carStatus === 'etape 14') {
-      return this.statusBooking = 'Paiement validé';
+    else if  (this.carProcess === 'etape14') {
+      return this.carStatus = 'Paiement validé';
     }
-    else if  (this.carStatus === 'etape 15') {
-      return this.statusBooking = 'Véhicule en attente d\'un driver';
+    else if  (this.carProcess === 'etape15') {
+      return this.carStatus = 'Véhicule en attente d\'un driver';
     }
-    else if  (this.carStatus === 'etape 16') {
-      return this.statusBooking = 'Prise en charge par Mouttec';
+    else if  (this.carProcess === 'etape16') {
+      return this.carStatus = 'Prise en charge par Mouttec';
     }
-    else if  (this.carStatus === 'etape 17') {
-      return this.statusBooking = 'Prise en charge par Mouttec';
+    else if  (this.carProcess === 'etape17') {
+      return this.carStatus = 'Prise en charge par Mouttec';
     }
-    else if  (this.carStatus === 'etape 18') {
-      return this.statusBooking = 'Prise en charge par Mouttec';
+    else if  (this.carProcess === 'etape18') {
+      return this.carStatus = 'Prise en charge par Mouttec';
     }
-    else if  (this.carStatus === 'etape 19') {
-      return this.statusBooking = 'Prise en charge par Mouttec';
+    else if  (this.carProcess === 'etape19') {
+      return this.carStatus = 'Prise en charge par Mouttec';
     }
-    else if  (this.carStatus === 'etape 20') {
-      return this.statusBooking = 'Arrivé chez le client';
+    else if  (this.carProcess === 'etape20') {
+      return this.carStatus = 'Arrivé chez le client';
     }
-    else if  (this.carStatus === 'etape 21') {
-      return this.statusBooking = 'Véhicule en cours de restitution';
+    else if  (this.carProcess === 'etape21') {
+      return this.carStatus = 'Véhicule en cours de restitution';
     }
-    else if  (this.carStatus === 'etape 22') {
-      return this.statusBooking = 'Véhicule en cours de restitution';
+    else if  (this.carProcess === 'etape22') {
+      return this.carStatus = 'Véhicule en cours de restitution';
     }
-    else if  (this.carStatus === 'etape 23') {
-      return this.statusBooking = 'Véhicule en cours de restitution';
+    else if  (this.carProcess === 'etape23') {
+      return this.carStatus = 'Véhicule en cours de restitution';
     }
-    else if  (this.carStatus === 'etape 24') {
-      return this.statusBooking = 'Véhicule en cours de restitution';
+    else if  (this.carProcess === 'etape24') {
+      return this.carStatus = 'Véhicule en cours de restitution';
     }
-    else if  (this.carStatus === 'etape 25') {
-      return this.statusBooking = 'Véhicule en cours de restitution';
+    else if  (this.carProcess === 'etape25') {
+      return this.carStatus = 'Véhicule en cours de restitution';
     }
-    else if  (this.carStatus === 'etape 26') {
-      return this.statusBooking = 'Véhicule restitué';
+    else if  (this.carProcess === 'etape26') {
+      return this.carStatus = 'Véhicule restitué';
     }
-    else if  (this.carStatus === 'etape 27') {
-      return this.statusBooking = 'Véhicule restitué';
+    else if  (this.carProcess === 'etape27') {
+      return this.carStatus = 'Véhicule restitué';
     }
   }
 

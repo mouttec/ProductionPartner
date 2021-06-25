@@ -9,7 +9,7 @@ import { Partner } from 'src/app/models/partner.model';
 export class PartnerService {
 
   partnerSubject = new Subject<any[]>();
-  baseUrl = 'http://localhost:8888/MoutteCAPI/backend/api/partner/';
+  baseUrl = '../backend/api/partner/';
   private partners: Partner [];
 
   constructor(private httpClient: HttpClient) { }

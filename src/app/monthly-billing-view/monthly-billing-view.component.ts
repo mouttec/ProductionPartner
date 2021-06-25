@@ -13,6 +13,7 @@ export class MonthlyBillingViewComponent implements OnInit, OnDestroy {
   billings: Billing[]
   billingSubscription: Subscription;
   idPartner = JSON.parse(localStorage.getItem('idPartner'));
+  p: number = 1;
 
   constructor(private billingService: BillingService) { }
 

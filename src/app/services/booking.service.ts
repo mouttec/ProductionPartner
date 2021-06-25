@@ -10,7 +10,7 @@ export class BookingService {
 
   bookingSubject = new Subject<Booking[]>();
   bookingByIdCustomerSubject = new Subject<Booking[]>();
-  api = 'http://localhost:8888/MoutteCAPI/backend/api/booking';
+  api = '../backend/api/booking';
   private bookings: Booking[];
   private bookingByIdCustomers: Booking[];
   addressPartner = localStorage.getItem('addressPartner');
@@ -43,12 +43,30 @@ export class BookingService {
     );
   }
 
-  addBooking(booking: Booking) {
-    this.httpClient.post(`${this.api}/editBooking.php`, booking).subscribe(
-      () => {
-        this.bookings.push(booking);
+  readListBookingByPartner(idPartner) {
+    this.httpClient.get<Booking[]>(`${this.api}/listBooking.php?idPartner=${idPartner}`).subscribe(
+      (bookings) => {
+        this.bookings = bookings;
+        this.emitBookingSubject();
+        console.log(bookings);
       },
       (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  addBooking(booking: Booking) {
+    this.httpClient.post(`${this.api}/editBookingByPartner.php`, booking).subscribe(
+      () => {
+        this.bookings.push(booking);
+        console.log('address fichier back pour envoie des données', `${this.api}/editBookingByPartner.php`);
+        console.log('envoie des deonnées au back', booking);
+        console.log('enregistrement booking réussit');
+      },
+      (error) => {
+        console.log('address fichier back pour envoie des données', `${this.api}/editBookingByPartner.php`);
+        console.log('envoie des deonnées au back', booking);
         console.log('erreur de sauvegarde du booking', + error);
       }
     );
@@ -57,16 +75,6 @@ export class BookingService {
   getBookingById(idBooking) {
   return this.httpClient.get(`${this.api}/listBooking.php?idBooking=${idBooking}`);
   }
-
-  getBookingByIdCustomerAndLenght(idCustomer) {
-    this.httpClient.get<Booking[]>(`${this.api}/listBooking.php?idCustomer=${idCustomer}&listLenght=5`).subscribe(
-      (bookings) => {
-        this.bookingByIdCustomers = bookings;
-        this.emitBookingByCustomerSubject(idCustomer);
-      }
-    );
-  }
-
 
   getBookingByIdCustomer(idCustomer) {
     this.httpClient.get<Booking[]>(`${this.api}/listBooking.php?idCustomer=${idCustomer}`).subscribe(
@@ -87,5 +95,7 @@ export class BookingService {
       }
     );
   }
+
+
 
 }

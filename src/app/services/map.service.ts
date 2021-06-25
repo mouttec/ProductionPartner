@@ -12,6 +12,16 @@ export class MapService {
   distanceBack: number;
   durationBack: any;
   tarif: string;
+  t1 = JSON.parse(localStorage.getItem('priceForthOrBackInf5'));
+  t2 = JSON.parse(localStorage.getItem('priceForthOrBackBetween5And10'));
+  t3 = JSON.parse(localStorage.getItem('priceForthOrBackBetwenn10And15'));
+  t4 = JSON.parse(localStorage.getItem('priceRoundInf5'));
+  t5 = JSON.parse(localStorage.getItem('priceRoundInf5AndBetween5And10'));
+  t6 = JSON.parse(localStorage.getItem('priceRoundInf5AndBetween10And15'));
+  t7 = JSON.parse(localStorage.getItem('priceRoundBetween5And10'));
+  t8 = JSON.parse(localStorage.getItem('priceRoundBetween5And10AndBetween10And15'));
+  t9 = JSON.parse(localStorage.getItem('priceBetween10And15'));
+  t10 = JSON.parse(localStorage.getItem('priceTechnicalControl'));
 
   constructor() { }
 
@@ -88,6 +98,9 @@ export class MapService {
    else if ((distanceForth > 10 && distanceForth <= 15) && (distanceBack > 10 && distanceBack <= 15) && formulaBooking === 'round') {
      return this.tarif = '89,90€';
    }
+   else if (distanceForth <= 5 && distanceBack <= 5 && formulaBooking === 'technicalControl') {
+    return this.tarif = '119,90€';
+  }
    else {
      return this.tarif = 'nous contacter';
    }

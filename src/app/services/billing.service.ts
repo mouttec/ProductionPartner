@@ -11,7 +11,7 @@ export class BillingService {
 
   billingSubject = new Subject<Billing[]>();
   billingByIdPartnerSubject = new Subject<Billing[]>();
-  baseUrl = 'http://localhost:8888/MoutteCAPI/backend/api/partnerInvoice/';
+  baseUrl = '../backend/partnerInvoice/';
   private billings: Billing[];
   private billingByIdPartner: Billing[];
 

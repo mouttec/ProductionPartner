@@ -22,6 +22,7 @@ export class ProfilComponent implements OnInit {
   datePartner: string;
   typeBilling: string;
   statusPartner: string;
+  idAgency: number;
 
   idPartner = JSON.parse(localStorage.getItem('idPartner'));
 
@@ -37,6 +38,7 @@ export class ProfilComponent implements OnInit {
       .subscribe(
         partner => {
           this.currentPartner = partner;
+          console.log(partner)
           this.usernamePartner = this.currentPartner.usernamePartner;
           this.namePartner = this.currentPartner.namePartner;
           this.addressPartner = this.currentPartner.addressPartner;
@@ -48,10 +50,12 @@ export class ProfilComponent implements OnInit {
           this.typePartner = this.currentPartner.typePartner;
           this.statusPartner = this.currentPartner.statusPartner;
           this.typeBilling = this.currentPartner.typeBilling;
+          localStorage.setItem('addressPartner', JSON.stringify(this.addressPartner));
           localStorage.setItem('mailPartner', JSON.stringify(this.mailPartner));
           localStorage.setItem('phonePartner', JSON.stringify(this.phonePartner));
           localStorage.setItem('nameBilling', JSON.stringify(this.nameBilling));
           localStorage.setItem('addressBilling', JSON.stringify(this.addressBilling));
+          localStorage.setItem('idAgency', JSON.stringify(this.idAgency));
         },
         error => {
           console.log(error);

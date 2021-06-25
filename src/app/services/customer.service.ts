@@ -10,8 +10,9 @@ import { Observable } from 'rxjs';
 export class CustomerService {
 
   customerSubject = new Subject<Customer[]>();
-  baseUrl = 'http://localhost:8888/MoutteCAPI/backend/api/customers/';
+  baseUrl = '../backend/api/customers/';
   private customers: Customer[];
+  idPartner = JSON.parse(localStorage.getItem('idPartner'));
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,7 +21,7 @@ export class CustomerService {
   }
 
   readlListCustomer(): Observable<Customer[]> {
-    this.httpClient.get<Customer[]>(`${this.baseUrl}/listCustomers.php?`).subscribe(
+    this.httpClient.get<Customer[]>(`${this.baseUrl}/listCustomers.php?idPartner=${this.idPartner}`).subscribe(
       (reponse) => {
         this.customers = reponse;
         this.emitCustomerSubject();

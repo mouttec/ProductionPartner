@@ -1,0 +1,15 @@
+<div class="row mt-5 mb-3 pt">
+    <div class="text-center col-12">
+        <h2>Rendez-vous à venir</h2>
+    </div>
+</div>
+
+<div class="container pb-5">
+    <app-list-booking *ngFor="let booking of bookings  | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" [indexOfBooking]="i" [idBooking]="booking.idBooking" [firstNameCustomer]="booking.customerData.firstNameCustomer" [lastNameCustomer]="booking.customerData.lastNameCustomer"
+        [phoneCustomer]="booking.customerData.phoneCustomer" [licensePlateCar]="booking.carData.licensePlateCar" [brandCar]="booking.carData.brandCar" [modelCar]="booking.carData.modelCar" [dateOfCirculationCar]="booking.carData.dateOfCirculationCar"
+        [motorizationCar]="booking.carData.motorizationCar" [dateForth]="booking.dateForth" [hoursForth]="booking.hoursForth" [dateOfBirthdayCustomer]="booking.customerData.dateOfBirthdayCustomer" [mailCustomer]="booking.customerData.mailCustomer"
+        [dateBack]="booking.dateBack"></app-list-booking>
+    <div class="row mt-5">
+        <pagination-controls class="hide-page-numbers m-auto text-center" (pageChange)="p = $event" previousLabel="précédent" nextLabel="suivant"></pagination-controls>
+    </div>
+</div>

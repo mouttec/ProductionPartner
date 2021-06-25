@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CalendarMouttecComponent } from './calendar-mouttec.component';
+import { ListBookingViewComponent } from './list-booking-view.component';
 
-describe('CalendarMouttecComponent', () => {
-  let component: CalendarMouttecComponent;
-  let fixture: ComponentFixture<CalendarMouttecComponent>;
+describe('ListBookingViewComponent', () => {
+  let component: ListBookingViewComponent;
+  let fixture: ComponentFixture<ListBookingViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CalendarMouttecComponent ]
+      declarations: [ ListBookingViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CalendarMouttecComponent);
+    fixture = TestBed.createComponent(ListBookingViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

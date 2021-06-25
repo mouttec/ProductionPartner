@@ -35,7 +35,9 @@ export class UpdatePasswordComponent implements OnInit {
   initFormUpdatePassword() {
     this.updatePassword = this.formBuilder.group(
       {
-        password: ['', Validators.required]
+        oldPassword: ['', Validators.required],
+        newPassword: ['', Validators.required],
+        newPassword2: ['', Validators.required]
       }
     );
   }
@@ -43,10 +45,12 @@ export class UpdatePasswordComponent implements OnInit {
   onSubmitFormUpdatePassword() {
     const formValue = this.updatePassword.value;
     const newPassword = new ProfilPartnerPassword(
-      formValue['password']
+      formValue['oldPassword'],
+      formValue['newPassword']
     );
     newPassword.idPartner = this.idPartnerNumber;
+    console.log('récupération des données à envoyer au back', newPassword);
     this.partnerService.updatePartnerPassword(newPassword);
-    this.router.navigate(['/calendarMouttec']);
+    this.router.navigate(['/calendar']);
   }
 }

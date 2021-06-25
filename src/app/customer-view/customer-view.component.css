@@ -41,3 +41,12 @@ img {
 .list-group-flush {
   border-bottom: 2px solid #A7A7A7
 }
+
+pagination-controls {
+  font-size: 20px;
+  font-family: 'Megante';
+}
+
+.ngx-pagination .current {
+  background: #EF7B15!important;
+}

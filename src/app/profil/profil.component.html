@@ -1,30 +1,29 @@
 <div class="row mt-5 mb-4 pt">
-  <div class="text-center col-12">
-      <h2>Mon profil</h2>
-  </div>
+    <div class="text-center col-12">
+        <h2>Mon profil</h2>
+    </div>
 </div>
 
 <div class="row pb-5">
-  <div class="col-4 colInfoLeft">
-    <p class="m-auto p-2 info"><span>Identifiant de connexion : </span>{{ usernamePartner }}</p>
-    <p class="m-auto p-2 info"><span>mot de passe : </span>**********</p>
-    <p class="m-auto p-2 info"><span>Type du partenaire : </span> {{ typePartner }}</p>
-  </div>
-  <div class="col-4 colInfoLeft">
-    <p class="m-auto p-2 info"><span>Nom du partenaire : </span>{{ namePartner }}</p>
-    <p class="m-auto p-2 info"><span>Adresse mail : </span> {{ mailPartner }}</p>
-    <p class="m-auto p-2 info"><span>Téléphone : </span> {{ phonePartner }}</p>
-    <p class="m-auto p-2 info"><span>Adresse : </span> {{ addressPartner }} </p>
-  </div>
-  <div class="col-4 colInfoLeft">
-    <p class="m-auto p-2 info"><span>Nom de facturation : </span> {{ nameBilling }}</p>
-    <p class="m-auto p-2 info"><span>Numéro de siret : </span> {{ siretPartner }}</p>
-    <p class="m-auto p-2 info"><span>Adresse de facturation : </span>{{ addressBilling }}</p>
-  </div>
+    <div class="col-4 colInfoLeft">
+        <p class="m-auto p-2 info"><span>Identifiant de connexion : </span>{{ usernamePartner }}</p>
+        <p class="m-auto p-2 info"><span>Mot de passe : </span>**********</p>
+        <p class="m-auto p-2 info"><span>Type de partenaire : </span> {{ typePartner }}</p>
+    </div>
+    <div class="col-4 colInfoLeft">
+        <p class="m-auto p-2 info"><span>Nom du partenaire : </span>{{ namePartner }}</p>
+        <p class="m-auto p-2 info"><span>Adresse e-mail : </span> {{ mailPartner }}</p>
+        <p class="m-auto p-2 info"><span>Téléphone : </span> {{ phonePartner }}</p>
+        <p class="m-auto p-2 info"><span>Adresse : </span> {{ addressPartner }} </p>
+    </div>
+    <div class="col-4 colInfoLeft">
+        <p class="m-auto p-2 info"><span>Nom de facturation : </span> {{ nameBilling }}</p>
+        <p class="m-auto p-2 info"><span>Numéro de siret : </span> {{ siretPartner }}</p>
+        <p class="m-auto p-2 info"><span>Adresse de facturation : </span>{{ addressBilling }}</p>
+    </div>
 
-  <div class="row m-auto lineButton">
-    <button class="mr-2" routerLink="updatePassword">Modifier le mot de passe</button>
-    <button class="ml-2" routerLink="updateProfil">Modifier mes informations</button>
-  </div>
+    <div class="row m-auto lineButton">
+        <button class="mr-2" routerLink="updatePassword">Modifier le mot de passe</button>
+        <button class="ml-2" routerLink="updateProfil">Modifier mes informations</button>
+    </div>
 </div>
-

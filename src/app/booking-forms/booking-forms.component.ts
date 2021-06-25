@@ -10,8 +10,9 @@ import {  } from 'rxjs/add/operator/toPromise';
 import { CustomerService } from 'src/app/services/customer.service';
 import { Customer } from 'src/app/models/customer.model';
 import { SivService } from 'src/app/services/siv.service';
-import { first } from 'rxjs/operators';
 import { Siv } from 'src/app/models/siv.model';
+import { HoursBooking } from 'src/app/models/hoursBooking.model';
+import { HoursBookingService } from 'src/app/services/hours-booking.service';
 
 @Component({
   selector: 'app-booking-forms',
@@ -19,6 +20,15 @@ import { Siv } from 'src/app/models/siv.model';
   styleUrls: ['./booking-forms.component.css']
 })
 export class BookingFormsComponent implements OnInit {
+
+  hoursBookings: HoursBooking[];
+  hoursBookingSubscription: Subscription;
+  dateForth: any;
+  hoursForth: any;
+  hoursBack: any;
+  dateBack: any;
+  p: number = 1;
+  p2: number = 1;
 
   siv: Siv[];
   bookingForm: FormGroup;
@@ -45,10 +55,12 @@ export class BookingFormsComponent implements OnInit {
   motorizationCar: any;
   versionCar: any;
   colorCar: any;
+  idAgency = 1;
 
-  constructor(private bookingService: BookingService, private router: Router, private formBuilder: FormBuilder, private partnerService: PartnerService, private ngZone: NgZone, private  mapService: MapService, private customerService: CustomerService, private sivService: SivService) { }
+  constructor(private bookingService: BookingService, private router: Router, private formBuilder: FormBuilder, private partnerService: PartnerService, private ngZone: NgZone, private  mapService: MapService, private customerService: CustomerService, private sivService: SivService, private hoursBookingService: HoursBookingService) { }
 
   ngOnInit(): void {
+    console.log('adress', this.addressPartner);
     this.bookingForm = this.formBuilder.group({
       addressForth: [''],
       addressBack: [''],
@@ -63,8 +75,12 @@ export class BookingFormsComponent implements OnInit {
       licensePlateCar: [''],
       modelCar: [''],
       brandCar: [''],
+      colorCar: [''],
+      versionCar: [''],
       motorizationCar: [''],
-      dateOfCirculationCar: ['']
+      dateOfCirculationCar: [''],
+      hoursForth: [''],
+      hoursBack: ['']
     });
     this.customerSubscription = this.customerService.customerSubject.subscribe(
       (customers: Customer[]) => {
@@ -72,6 +88,12 @@ export class BookingFormsComponent implements OnInit {
       }
     );
     this.customerService.readlListCustomer();
+    this.hoursBookingSubscription = this.hoursBookingService.hoursBookingSubject.subscribe(
+      (hoursBookings: HoursBooking[]) => {
+        this.hoursBookings = hoursBookings;
+      }
+    );
+    this.hoursBookingService.readListHoursBooking();
     this.initAutocomplete();
   }
 
@@ -134,6 +156,7 @@ export class BookingFormsComponent implements OnInit {
   }
 
   getDist(): Promise<any>{
+    console.log(this.addressPartner);
     this.formulaBooking = this.bookingForm.value.formulaBooking;
     if (this.bookingForm.value.address !== '') {
       return this.mapService.calculerDistance(this.address, this.addressPartner)
@@ -142,6 +165,7 @@ export class BookingFormsComponent implements OnInit {
           this.distanceForth = data.distance;
           this.durationForth = data.duration;
           this.tarif = this.mapService.calculTarifTwoAddress(this.distanceForth, this.formulaBooking);
+          console.log(this.tarif);
           localStorage.setItem('tarif', JSON.stringify(this.tarif));
           // console.log('compenent condition 1 service distance', JSON.parse(localStorage.getItem('distance')));
           // console.log('compenent condition 1 service duration', JSON.parse(localStorage.getItem('duration')));
@@ -272,7 +296,7 @@ export class BookingFormsComponent implements OnInit {
           // console.log('component constion 2 tarif',this.tarif);
           // console.log('compenent condition 2 local distance', localStorage.removeItem('distance'));
           // console.log('compenent condition 2 local duration', localStorage.removeItem('duration'));
-          console.log('compenent condition 2 local address', localStorage.removeItem('address'));
+          // console.log('compenent condition 2 local address', localStorage.removeItem('address'));
           // this.addressForth = '';
           // this.addressBack = '';
           // this.distanceForth = 0;
@@ -315,14 +339,19 @@ export class BookingFormsComponent implements OnInit {
       formValue['licensePlateCar']
     );
     return this.sivService.addSIV(newSiv).then((data) => {
-      console.log(1111);
       this.modelCar = data.modelCar;
+      this.bookingForm.controls['modelCar'].setValue(this.modelCar);
       this.brandCar = data.brandCar;
+      this.bookingForm.controls['brandCar'].setValue(this.brandCar);
       this.dateOfCirculationCar = data.dateOfCirculationCar;
+      this.bookingForm.controls['dateOfCirculationCar'].setValue(this.dateOfCirculationCar);
       this.colorCar = data.colorCar;
+      this.bookingForm.controls['colorCar'].setValue(this.colorCar);
       this.versionCar = data.versionCar;
+      this.bookingForm.controls['versionCar'].setValue(this.versionCar);
       this.motorizationCar = data.motorizationCar;
-      console.log("data", data);
+      this.bookingForm.controls['motorizationCar'].setValue(this.motorizationCar);
+      console.log(this.colorCar);
       return data;
     });
   }
@@ -343,7 +372,37 @@ export class BookingFormsComponent implements OnInit {
     newBooking.mailCustomer = this.bookingForm.value.mailCustomer;
     newBooking.phoneCustomer = this.bookingForm.value.phoneCustomer;
     newBooking.dateOfBirthdayCustomer = this.bookingForm.value.dateOfBirthdayCustomer;
-    newBooking.price = this.tarif;
+    newBooking.priceBooking = this.tarif;
+    newBooking.licensePlateCar = this.bookingForm.value.licensePlateCar;
+    newBooking.modelCar = this.modelCar;
+    newBooking.brandCar = this.brandCar;
+    newBooking.dateOfCirculationCar = this.dateOfCirculationCar;
+    newBooking.colorCar = this.colorCar;
+    newBooking.versionCar = this.versionCar;
+    newBooking.motorizationCar = this.motorizationCar;
+    console.log('hoursforth',this.bookingForm.value.hoursForth);
+    console.log('hoursback',this.bookingForm.value.hoursBack);
+    if (this.bookingForm.value.hoursForth != null && this.bookingForm.value.hoursBack === null) {
+      this.dateForth = this.bookingForm.get('hoursForth').value.substr(6, 16);
+      this.hoursForth = this.bookingForm.get('hoursForth').value.substr(0,5);
+    } else if(this.bookingForm.value.hoursForth === null && this.bookingForm.value.hoursBack != null) {
+      this.dateBack = this.bookingForm.get('hoursBack').value.substr(6, 16);
+      this.hoursBack = this.bookingForm.get('hoursBack').value.substr(0,5);
+    } else if (this.bookingForm.value.hoursForth != null && this.bookingForm.value.hoursBack != null) {
+      this.dateForth = this.bookingForm.get('hoursForth').value.substr(6, 16);
+      this.hoursForth = this.bookingForm.get('hoursForth').value.substr(0,5);
+      this.dateBack = this.bookingForm.get('hoursBack').value.substr(6, 16);
+      this.hoursBack = this.bookingForm.get('hoursBack').value.substr(0,5);
+    }
+    newBooking.dateForth = this.dateForth;
+    newBooking.hoursForth = this.hoursForth;
+    newBooking.dateBack = this.dateBack
+    newBooking.hoursBack = this.hoursBack;
+    newBooking.originBooking = "partner";
+    newBooking.idAgency = this.idAgency;
+    console.log('récupération des données à envoyer', newBooking);
+    this.bookingService.addBooking(newBooking);
+    this.router.navigate(['/calendar']);
   }
 
   rebuilderForm(){
@@ -356,5 +415,4 @@ export class BookingFormsComponent implements OnInit {
       }
     );
   }
-
 }

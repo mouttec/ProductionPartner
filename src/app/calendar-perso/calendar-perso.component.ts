@@ -78,7 +78,7 @@ export class CalendarPersoComponent implements OnInit {
   }
 
   fetchEvents() {
-    this.events$ = this.http.get<Calendar[]>(`http://localhost:8888/MoutteCAPI/backend/api/booking/prepareCalendar.php?idPartner=${this.idPartner}`).pipe(
+    this.events$ = this.http.get<Calendar[]>(`../backend/api/booking/prepareCalendar.php?idPartner=${this.idPartner}`).pipe(
       map(res => {
         return res.map(event => {
           return {

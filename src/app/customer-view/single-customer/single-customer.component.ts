@@ -27,6 +27,7 @@ export class SingleCustomerComponent implements OnInit {
   idCustomer: number;
   idCustomerBooking: any;
   idCustomerNumber : number;
+  p: number = 1;
 
   constructor(private customerService: CustomerService, private route: ActivatedRoute, private bookingService: BookingService) { }
 
@@ -55,7 +56,7 @@ export class SingleCustomerComponent implements OnInit {
         this.idCustomer = this.currentCustomer.idCustomer;
         localStorage.setItem('idCustomer', JSON.stringify(this.idCustomer));
         this.idCustomerNumber = Number(this.idCustomer);
-        this.bookingService.getBookingByIdCustomerAndLenght(this.idCustomerNumber);
+        this.bookingService.getBookingByIdCustomer(this.idCustomerNumber);
         console.log(this.idCustomerNumber);
       }
     )

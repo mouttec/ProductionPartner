@@ -45,7 +45,7 @@ constructor(private http: HttpClient, private formBuilder: FormBuilder, private 
     );
     this.partnerService.ReadListPartner();
     this.initFormUpdateProfil();
-    this.idAgencyNumber = Number(this.idAgency);
+    this.idAgencyNumber = 1;
     this.getPlaceAutocomplete();
   }
 
@@ -98,7 +98,7 @@ constructor(private http: HttpClient, private formBuilder: FormBuilder, private 
     newProfil.typeBilling = this.typeBilling;
     newProfil.idAgency = this.idAgencyNumber;
     this.partnerService.updatePartnerProfil(newProfil);
-    this.router.navigate(['/calendarMouttec']);
+    this.router.navigate(['/calendar']);
   }
 }
 

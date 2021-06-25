@@ -39,7 +39,7 @@ export class AuthComponent implements OnInit {
             else {
               this.authService.setToken(data.namePartner);
               this.authService.getLoggedInName.emit(true);
-              const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/calendarMouttec';
+              const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/calendar';
               this.router.navigate([redirect]);
               localStorage.setItem('idPartner', JSON.stringify(data.idPartner));
               localStorage.setItem('typeBilling', JSON.stringify(data.typeBilling));

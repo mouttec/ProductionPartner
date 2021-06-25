@@ -45,7 +45,7 @@ label {
   margin-right: 20px;
 }
 
-button {
+button, a {
   font-family: 'Megante';
   background-color: #EF7B15;
   text-transform: uppercase;
@@ -59,7 +59,7 @@ button {
   color: white;
 }
 
-button:hover {
+button:hover, a:hover {
   background-color: #EF7B15;
   border: #EF7B15 1px solid;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -67,7 +67,7 @@ button:hover {
 
 button:active,
 button:focus,
-button:visited {
+button:visited, a:active, a:focus, a:visited {
   background-color: #EF7B15;
   border: #EF7B15 1px solid;
 }
@@ -100,6 +100,58 @@ span {
   font-size: 14px;
 }
 
-a {
-  color: #EF7B15;
+
+.hide-page-numbers /deep/ .ngx-pagination li:not(.pagination-previous):not(.pagination-next) {
+  display: none;
+}
+
+.hoursBooking {
+  font-family: 'Megante';
+  border: solid 1px #EF7B15;
+  border-radius: 10px;
+  background-color: #EF7B15;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.hoursBookingRadio {
+  position: absolute!important;
+  visibility: hidden!important;
+  display: none!important;
+}
+
+.hoursBookingRadio:checked + label{
+  color: white!important;
+  background: #EF7B15!important;
+  font-weight: bold!important;
+}
+
+.hoursBookingLabel {
+  border: solid 1px #EF7B15;
+  display: inline-block;
+  margin: 2px;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: 'Megante';
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px 20px;
+  margin: 0;
+}
+
+pagination-controls {
+  font-size: 20px;
+}
+
+.sepHoursBooking {
+  margin-left: 10px;
+  margin-top: 25px;
+  border-top: solid 2px #a7a7a7
+}
+
+.title {
+  margin-top: 10px!important;
+
 }

@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   redirectUrl: string;
-  baseUrl = 'http://localhost:8888/MoutteCAPI/backend/api/partner';
+  baseUrl = '../backend/api/partner';
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
   constructor( private httpClient: HttpClient) { }
